@@ -1,0 +1,63 @@
+
+
+
+
+
+<div class="container">
+
+  <h3>Employee List</h3>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <td>  &nbsp; </td>
+        <td>  &nbsp;  </td>
+        <td>  &nbsp;  </td>
+        <td>  &nbsp;  </td>
+        <td>  <a (click)="ShowRegForm(e)">Add New</a></td>
+      </tr>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="success" *ngFor="let e of employees | async">
+        <td> {{e.id}}</td>
+        <td>{{e.fname}}</td>
+        <td>{{e.lname}}</td>
+        <td>{{e.email}}</td>
+        <td><a (click)="ShowRegForm(e)">Edit</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr >
+
+<form #regForm="ngForm">
+<div class="container" *ngIf="editCustomer">
+  <h3>{{FormHeader}}}</h3>
+  <table class="table table-condensed">
+    <tbody>
+      <tr>
+        <td>First Name</td>
+        <td><input type="text" name="fname" [(ngModel)]='fname' ></td>
+        </tr>
+        <tr>
+        <td>Last Name</td>
+        <td><input type="text" name="lname" [(ngModel)]='lname'></td>
+        </tr>
+        <tr>
+        <td> Email</td>
+        <td><input type="text" name="email" [(ngModel)]='email'></td>
+        </tr>
+        <tr>
+        <td><input type="hidden" name="id" [(ngModel)]='id'></td>
+        <td><input type="button" value="Save" (click)="Register(regForm)"></td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+</form>
