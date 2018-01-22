@@ -5,9 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
+import {EmployeeDataService} from '../DataServices/EmployeeDataService';
+import {employee} from '../Models/Employee';
 
-import {EmployeeDataService} from '../DataServices/EmployeeDataService'
-import {employee} from '../Models/Employee'
+import { map } from 'rxjs/operator/map';
 
 @Component({
   selector: 'app-employee-home',
@@ -26,18 +27,18 @@ export class EmployeeHomeComponent implements OnInit {
   employees:Observable<employee[]>
 test:any[];
   employeelist:employee[];
-mappedlist:employee[];
+mappedlist:employee[]=[];
   Dummyemployee:employee;
   constructor(private dataservice:EmployeeDataService)
    { 
    }
-  
   ngOnInit()
    {
-     this.dataservice.getEmployee() .subscribe((tempdate) =>{  this.employeelist=tempdate;});
- }
-  
-
+     this.dataservice.getEmployee().subscribe((tempdate) =>{  this.employeelist=tempdate;})
+     ,err=>{
+       console.log(err);
+     }
+   }
   ShowRegForm=function(employee)
   {
     this.editCustomer=true;
@@ -127,7 +128,11 @@ GetDummyObject(regForm:NgForm):employee
         this.employeelist.push(res);
         alert("Data added successfully !! ")
         this.editCustomer=false;
-      });
+      })
+      ,err=>
+      {
+        console.log("Error Occured " + err);
+      }
   }
 
 

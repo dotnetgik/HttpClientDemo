@@ -38,7 +38,7 @@ AddEmployee(emp:employee)
                     Fname:emp.Fname,Lname:emp.Lname,Email:emp.Email
              }
 
-return this.http.post<employee>(ROOT_URL+'/Employees',body,{headers})
+return this.http.post<employee>(ROOT_URL+'/Employees',emp,{headers})
 
 }
 
