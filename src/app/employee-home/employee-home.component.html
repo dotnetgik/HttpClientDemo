@@ -24,12 +24,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="success" *ngFor="let e of employees | async">
+      <tr class="success" *ngFor="let e of employeelist ">
         <td> {{e.id}}</td>
         <td>{{e.fname}}</td>
         <td>{{e.lname}}</td>
         <td>{{e.email}}</td>
         <td><a (click)="ShowRegForm(e)">Edit</a></td>
+        <td><a (click)="ShowRegFormForDelete(e)">Delete</a></td>
       </tr>
     </tbody>
   </table>
@@ -38,7 +39,7 @@
 
 <form #regForm="ngForm">
 <div class="container" *ngIf="editCustomer">
-  <h3>{{FormHeader}}}</h3>
+  <h3>{{FormHeader}}</h3>
   <table class="table table-condensed">
     <tbody>
       <tr>
@@ -55,7 +56,8 @@
         </tr>
         <tr>
         <td><input type="hidden" name="id" [(ngModel)]='id'></td>
-        <td><input type="button" value="Save" (click)="Register(regForm)"></td>
+        <td><input type="button" value="Save" (click)="Save(regForm)"></td>
+
       </tr>
     </tbody>
   </table>
